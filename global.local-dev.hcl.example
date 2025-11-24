@@ -10,7 +10,7 @@ locals {
   third_location     = "taiwanorth"
   dr_location        = "westus3"
 
-  # 主要租戶 ID (Azure AD)
+  # 主要租戶 ID (Microsoft Entra ID)
   tenant_id = ""
 
   # 訂閱 ID 列表

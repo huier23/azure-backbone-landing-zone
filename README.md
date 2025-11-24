@@ -8,29 +8,30 @@
 
 ## 如何使用
 
-1.
-```bash
-cp global.local-dev.hcl.example global.local-devel.hcl
-```
+1. 複製環境變數
 
-1. 將訂閱 ID 填寫進去
+    ```bash
+    cp global.local-dev.hcl.example global.local-devel.hcl
+    ```
 
-2. 執行 Terragrunt Plan 確認狀態
+2. 將訂閱 ID 填寫進去
 
-```bash
-sh ./0-terragrunt-local-dev-plan.sh
-```
+3. 執行 Terragrunt Plan 確認狀態
+
+    ```bash
+    sh ./0-terragrunt-local-dev-plan.sh
+    ```
 
 確認沒問題才執行
 
-3. 執行 Terragrunt Apply 進行部署驗證
+4. 執行 Terragrunt Apply 進行部署驗證
 
-```bash
-sh ./1-terragrunt-local-dev-deploy.sh
-```
+    ```bash
+    sh ./1-terragrunt-local-dev-deploy.sh
+    ```
 
-4. 如果測試完, 要進行清理的話, 請下這個指令, 他會把 `全部` 資源移除
+5. 如果測試完, 要進行清理的話, 請下這個指令, 他會把 `全部` 資源移除
 
-```bash
-sh ./2-terragrunt-local-dev-destroy.sh
-```
+    ```bash
+    sh ./2-terragrunt-local-dev-destroy.sh
+    ```
