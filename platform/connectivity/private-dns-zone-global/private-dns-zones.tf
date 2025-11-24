@@ -6,7 +6,7 @@ locals {
 }
 
 resource "azurerm_resource_group" "rg_private_dns_zones" {
-  name     = "rg-${local.private_dns_zones.name}-jpw"
+  name     = "rg-${local.private_dns_zones.name}-global"
   location = local.private_dns_zones.location
 }
 
