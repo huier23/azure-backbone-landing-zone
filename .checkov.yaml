@@ -1,0 +1,16 @@
+quiet: true
+framework:
+  - terraform
+check:
+  # 對應 NIST AC-3 (Access Control) & SC-7 (Boundary Protection)
+  - CKV_AZURE_35  # Storage Account Default Network Access Deny
+  - CKV_AZURE_59  # Function App HTTPS only
+  - CKV_AZURE_113 # SQL Server Disable Public Network Access
+
+  # 對應 NIST SC-28 (Protection of Information at Rest)
+  - CKV_AZURE_44  # Storage Account Encryption
+  - CKV_AZURE_117 # SQL Server TDE (Transparent Data Encryption)
+
+  # 對應 NIST AU-12 (Audit Generation)
+  - CKV_AZURE_4   # Web App Logging Enabled
+  - CKV_AZURE_23  # SQL Server Auditing Enabled
