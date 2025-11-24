@@ -2,8 +2,6 @@ locals {
   private_dns_zones = {
     name     = "private-dns-zones"
     location = "japanwest"
-    # az account list-locations -o table
-    regionName = "japanwest"
   }
 }
 
