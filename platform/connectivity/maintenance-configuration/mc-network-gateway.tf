@@ -17,10 +17,25 @@ resource "azurerm_maintenance_configuration" "mc_network_gateway" {
   scope               = "Extension"
   visibility          = "Custom"
   window {
-    start_date_time = "2025-11-24 23:00"
+    start_date_time = "2025-11-25 00:00"
     # expiration_date_time = ""
     duration    = "05:00"
     time_zone   = "Taipei Standard Time"
-    recur_every = "Monthly"
+    recur_every = "Month" # Hour,Day,Week,Month
+  }
+}
+
+resource "azurerm_maintenance_configuration" "mc_network_security" {
+  name                = "mc-network-security"
+  resource_group_name = azurerm_resource_group.rg_maintenance_config.name
+  location            = azurerm_resource_group.rg_maintenance_config.location
+  scope               = "Extension"
+  visibility          = "Custom"
+  window {
+    start_date_time = "2025-11-25 01:00"
+    # expiration_date_time = ""
+    duration    = "05:00"
+    time_zone   = "Taipei Standard Time"
+    recur_every = "Month" # Hour,Day,Week,Month
   }
 }

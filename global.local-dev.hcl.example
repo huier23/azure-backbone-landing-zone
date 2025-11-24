@@ -10,6 +10,9 @@ locals {
   third_location     = "taiwanorth"
   dr_location        = "westus3"
 
+  # 主要租戶 ID (Azure AD)
+  tenant_id = ""
+
   # 訂閱 ID 列表
   # 如果你是開發人員, 可以填自己的訂閱 ID
   subscription_connectivity_id = ""
