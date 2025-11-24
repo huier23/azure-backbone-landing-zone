@@ -23,9 +23,9 @@ module "vnet_connectivity_jpw_01" {
   name                 = "vnet-${local.connectivity_jpw_01.name}"
   enable_vm_protection = true
   encryption = {
-    enabled = true
-    #enforcement = "DropUnencrypted"  # NOTE: This preview feature requires approval, leaving off in example: Microsoft.Network/AllowDropUnecryptedVnet
-    enforcement = "AllowUnencrypted"
+    # https://learn.microsoft.com/zh-tw/azure/virtual-network/virtual-network-encryption-overview
+    # Azure Private DNS Resolver 不支援這個做法
+    enabled = false
   }
   flow_timeout_in_minutes = 4
   # dns_servers = {
@@ -57,6 +57,18 @@ module "vnet_connectivity_jpw_01" {
     snet_dnspr_out_jpw = {
       name                            = "snet-dnspr-out-jpw"
       address_prefixes                = ["10.227.2.16/28"]
+      default_outbound_access_enabled = false
+    }
+
+    snet_ampls_jpw = {
+      name                            = "snet-ampls-jpw"
+      address_prefixes                = ["10.227.2.32/28"]
+      default_outbound_access_enabled = false
+    }
+
+    snet_private_endpoints_jpw = {
+      name                            = "snet-private-endpoints-jpw"
+      address_prefixes                = ["10.227.2.48/28"]
       default_outbound_access_enabled = false
     }
   }

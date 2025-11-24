@@ -73,3 +73,21 @@ resource "azurerm_firewall" "afw_azure_jpw_prod_01" {
 
   tags = local.tags_connectivity
 }
+
+# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub_routing_intent
+resource "azurerm_virtual_hub_routing_intent" "route_intent_azure_jpw_prod_01" {
+  name           = "route-intent-${local.vhub_azure_jpw_prod_01.name}"
+  virtual_hub_id = azurerm_virtual_hub.vhub_azure_jpw_prod_01.id
+
+  routing_policy {
+    name         = "InternetTrafficPolicy"
+    destinations = ["Internet"]
+    next_hop     = azurerm_firewall.afw_azure_jpw_prod_01.id
+  }
+
+  routing_policy {
+    name         = "PrivateTrafficPolicy"
+    destinations = ["PrivateTraffic"]
+    next_hop     = azurerm_firewall.afw_azure_jpw_prod_01.id
+  }
+}
