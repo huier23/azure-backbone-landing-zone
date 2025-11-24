@@ -59,6 +59,14 @@ generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.0.0"
+    }
+  }
+}
 provider "azurerm" {
   features {
     resource_group {
