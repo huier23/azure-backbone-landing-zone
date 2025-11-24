@@ -25,7 +25,8 @@ module "vnet_connectivity_jpw_01" {
   encryption = {
     # https://learn.microsoft.com/zh-tw/azure/virtual-network/virtual-network-encryption-overview
     # Azure Private DNS Resolver 不支援這個做法
-    enabled = false
+    enabled     = false
+    enforcement = "AllowUnencrypted"
   }
   flow_timeout_in_minutes = 4
   # dns_servers = {
