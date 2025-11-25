@@ -31,7 +31,7 @@ jobs:
       - name: Run KICS Scan with SARIF result
         uses: checkmarx/kics-github-action@v2.1.16
         with:
-          path: 'terraform'
+          path: '.'
           # when provided with a directory on output_path
           # it will generate the specified reports file named 'results.{extension}'
           # in this example it will generate:
@@ -41,7 +41,7 @@ jobs:
           output_path: results-dir
           platform_type: terraform
           output_formats: 'json,sarif'
-          exclude_paths: "terraform/gcp/big_data.tf,terraform/azure"
+          # exclude_paths: "terraform/gcp/big_data.tf,terraform/azure"
           # seek query id in it's metadata.json
           exclude_queries: 0437633b-daa6-4bbc-8526-c0d2443b946e
 
