@@ -1,17 +1,17 @@
 # https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/0.10.2
 locals {
-  key_ergw_taipei_01 = {
-    name = "key-ergw-taipei-01"
+  key_ergw_taipei_02 = {
+    name = "key-ergw-taipei-02"
   }
 }
 
 # https://registry.terraform.io/modules/Azure/avm-res-keyvault-vault/azurerm/latest
-module "key_erd_taipei_01" {
+module "key_erd_taipei_02" {
   source  = "Azure/avm-res-keyvault-vault/azurerm"
   version = "0.10.2"
 
   location                        = azurerm_resource_group.rg_kv_prd_jpw_01.location
-  name                            = local.key_ergw_taipei_01.name
+  name                            = local.key_ergw_taipei_02.name
   resource_group_name             = azurerm_resource_group.rg_kv_prd_jpw_01.name
   tenant_id                       = var.tenant_id
   sku_name                        = "premium"

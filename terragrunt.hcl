@@ -53,8 +53,8 @@ remote_state {
   }
 }
 
-# 2. 動態生成 Provider 配置
-# 動態切換訂用帳戶，實現跨訂用帳戶管理
+# 動態生成 Provider 配置
+# 如果需要生成全專案都要使用的 provider.tf 檔案，可以在這裡定義
 generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
@@ -63,7 +63,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 3.0.0"
+      version = ">= 4.0.0"
     }
   }
 }
@@ -73,7 +73,8 @@ provider "azurerm" {
       prevent_deletion_if_contains_resources = false
     }
     key_vault {
-      recover_soft_deleted_key_vaults = false
+      # 讓 Terraform 自動復原軟刪除的 Key Vault
+      recover_soft_deleted_key_vaults = true
     }
   }
   storage_use_azuread = true

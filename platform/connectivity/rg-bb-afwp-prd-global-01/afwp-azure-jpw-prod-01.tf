@@ -35,6 +35,9 @@ resource "azurerm_firewall_policy" "afwp_azure_jpw_prod_01" {
     retention_in_days                  = local.afwp_azure_jpw_prod_01.log_retention_in_days
   }
 
+  intrusion_detection {
+    mode = "Deny"
+  }
 }
 
 

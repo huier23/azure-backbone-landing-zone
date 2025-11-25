@@ -27,3 +27,25 @@ platform/connectivity/
 ## Q3: 為何使用 terragrunt 而不使用原生 terraform?
 
 A3: 主要要控制爆炸半徑, 不要讓一份超大型的 terraform state 管全部的服務
+
+## Q4: Key Vault 軟刪除問題
+
+1. 先確認 Portal／CLI 有軟刪除紀錄
+
+    ```bash
+    az keyvault list-deleted --subscription 82c65997-b2ba-41ef-bf8a-80bc639ea78d --query "[?name=='key-erd-taipei-01']"；
+    ```
+
+2. 先有該訂閱的 Soft Delete Purge Administrator 權限
+
+3. 移除該 KV
+
+    ```bash
+    az keyvault purge --subscription 82c65997-b2ba-41ef-bf8a-80bc639ea78d --name key-erd-taipei-01 --location japanwest
+    ```
+
+4. 確認
+
+    ```bash
+    az keyvault list-deleted --subscription 82c65997-b2ba-41ef-bf8a-80bc639ea78d --query "[?name=='key-erd-taipei-01']"；
+    ```
