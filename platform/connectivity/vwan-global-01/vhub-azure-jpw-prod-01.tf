@@ -54,7 +54,6 @@ resource "azurerm_firewall" "afw_azure_jpw_prod_01" {
   resource_group_name = azurerm_resource_group.rg_vwan_global_01.name
   sku_name            = "AZFW_Hub"
   sku_tier            = "Premium"
-  threat_intel_mode   = "Deny"
 
   virtual_hub {
     virtual_hub_id  = azurerm_virtual_hub.vhub_azure_jpw_prod_01.id

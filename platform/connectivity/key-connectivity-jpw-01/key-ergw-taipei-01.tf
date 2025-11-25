@@ -19,7 +19,7 @@ locals {
 
 resource "azurerm_resource_group" "rg_key_connectivity_jpw_01" {
   location = local.key_connectivity_jpw_01.location
-  name     = local.key_connectivity_jpw_01.name
+  name     = "rg-${local.key_connectivity_jpw_01.name}"
 }
 
 # 依賴反轉（Dependency Inversion）
