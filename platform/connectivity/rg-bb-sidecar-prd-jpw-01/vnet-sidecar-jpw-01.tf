@@ -1,14 +1,15 @@
 locals {
   sidecar_jpw_01 = {
-    name           = "sidecar-jpw-01"
-    location       = "japanwest"
-    address_prefix = "10.227.2.0/24"
-    azfw_ip        = "10.227.2.1"
+    name                = "sidecar-jpw-01"
+    location            = "japanwest"
+    resource_group_name = "bb-sidecar-prd-jpw-01"
+    address_prefix      = "10.227.2.0/24"
+    azfw_ip             = "10.227.2.1"
   }
 }
 
 resource "azurerm_resource_group" "rg_vnet_sidecar_jpw_01" {
-  name     = "rg-${local.sidecar_jpw_01.name}"
+  name     = local.sidecar_jpw_01.resource_group_name
   location = local.sidecar_jpw_01.location
 }
 
