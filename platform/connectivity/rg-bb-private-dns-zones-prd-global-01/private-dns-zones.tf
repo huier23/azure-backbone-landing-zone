@@ -1,12 +1,13 @@
 locals {
   private_dns_zones = {
-    name     = "private-dns-zones"
-    location = "japanwest"
+    name                = "private-dns-zones"
+    resource_group_name = "rg-bb-private-dns-zones-prd-global-01"
+    location            = "japanwest"
   }
 }
 
 resource "azurerm_resource_group" "rg_private_dns_zones" {
-  name     = "rg-${local.private_dns_zones.name}-global"
+  name     = local.private_dns_zones.resource_group_name
   location = local.private_dns_zones.location
 }
 

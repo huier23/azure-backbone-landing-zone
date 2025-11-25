@@ -12,3 +12,13 @@ variable "tenant_id" {
   description = "請填寫 Azure 租戶 ID"
   type        = string
 }
+
+variable "private_dns_zone_id" {
+  description = "Resource ID for privatelink.vaultcore.azure.net private DNS zone"
+  type        = string
+}
+
+variable "private_endpoint_subnet_id" {
+  description = "Resource ID for the snet-kv subnet used by private endpoints"
+  type        = string
+}

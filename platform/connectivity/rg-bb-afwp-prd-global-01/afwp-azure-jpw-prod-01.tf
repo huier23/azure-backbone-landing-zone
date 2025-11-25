@@ -6,7 +6,7 @@ locals {
     name                               = "afwp-azure-jpw-prod-01"
     log_sku                            = "PerGB2018"
     log_retention_in_days              = 30 # 30 ~ 730
-    default_log_analytics_workspace_id = azurerm_log_analytics_workspace.log_soc_prd_jpw_01.id
+    default_log_analytics_workspace_id = var.log_soc_prd_jpw_01_workspace_id
     # 要寫當前區域的 Private DNS Resolver Inbound IP
     dnspr_inbound_ip = "10.227.2.4"
   }
@@ -15,8 +15,8 @@ locals {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall_policy
 resource "azurerm_firewall_policy" "afwp_azure_jpw_prod_01" {
   name                     = local.afwp_azure_jpw_prod_01.name
-  resource_group_name      = azurerm_resource_group.rg_afwp_azure_jpw_prod_01.name
-  location                 = azurerm_resource_group.rg_afwp_azure_jpw_prod_01.location
+  resource_group_name      = azurerm_resource_group.rg_afwp_global_01.name
+  location                 = azurerm_resource_group.rg_afwp_global_01.location
   sku                      = "Premium"
   threat_intelligence_mode = "Deny"
 

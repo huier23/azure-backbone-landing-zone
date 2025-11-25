@@ -55,7 +55,7 @@ resource "azurerm_firewall" "afw_azure_jpw_prod_01" {
   resource_group_name = azurerm_resource_group.rg_vwan_prd_global_01.name
   sku_name            = "AZFW_Hub"
   sku_tier            = "Premium"
-  private_ip_ranges   = "IANAPrivateRanges"
+  private_ip_ranges   = ["IANAPrivateRanges"]
 
   virtual_hub {
     virtual_hub_id  = azurerm_virtual_hub.vhub_azure_jpw_prod_01.id
@@ -63,7 +63,7 @@ resource "azurerm_firewall" "afw_azure_jpw_prod_01" {
   }
 
   zones              = local.vhub_azure_jpw_prod_01.zones
-  firewall_policy_id = azurerm_firewall_policy.afwp_azure_jpw_prod_01.id
+  firewall_policy_id = var.afwp_azure_jpw_prod_01_id
   dns_proxy_enabled  = true
   dns_servers = [
     "${local.vhub_azure_jpw_prod_01.dnspr_inbound_ip}"

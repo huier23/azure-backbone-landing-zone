@@ -13,7 +13,7 @@ locals {
 }
 
 resource "azurerm_resource_group" "rg_vwan_prd_global_01" {
-  name     = locals.vwan_prd_global_01.resource_group_name
+  name     = local.vwan_prd_global_01.resource_group_name
   location = local.vwan_prd_global_01.location
 }
 

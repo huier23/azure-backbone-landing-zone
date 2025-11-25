@@ -19,5 +19,5 @@ resource "azurerm_monitor_private_link_scoped_service" "link_to_log_soc_prd_jpw_
   name                = "link-to-log-soc-prd-jpw-01"
   resource_group_name = azurerm_resource_group.rg_vnet_sidecar_jpw_01.name
   scope_name          = azurerm_monitor_private_link_scope.ampls_jpw_01.name
-  linked_resource_id  = azurerm_log_analytics_workspace.log_soc_prd_jpw_01.id
+  linked_resource_id  = var.log_soc_prd_jpw_01_workspace_id
 }
