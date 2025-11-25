@@ -12,7 +12,7 @@ locals {
   }
 
   private_dns_zone = {
-    resource_group_name = "rg-private-dns-zones-jpw"
+    resource_group_name = "rg-private-dns-zones-global"
     vaultcore_zone_name = "privatelink.vaultcore.azure.net"
   }
 }
