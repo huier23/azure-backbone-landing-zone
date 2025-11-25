@@ -1,11 +1,11 @@
-name: tfsec-iac-scan
+name: tfsec-pr-commenter
 on:
   pull_request:
   workflow_dispatch:
 
 jobs:
   tfsec:
-    name: tfsec IaC scan
+    name: tfsec PR commenter
     runs-on: ubuntu-latest
 
     permissions:
