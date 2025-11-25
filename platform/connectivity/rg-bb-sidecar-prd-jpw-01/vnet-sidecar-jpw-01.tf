@@ -1,26 +1,27 @@
 locals {
-  connectivity_jpw_01 = {
-    name           = "connectivity-jpw-01"
+  sidecar_jpw_01 = {
+    name           = "sidecar-jpw-01"
     location       = "japanwest"
     address_prefix = "10.227.2.0/24"
+    azfw_ip = "10.227.2.1"
   }
 }
 
-resource "azurerm_resource_group" "rg_vnet_connect_jpw_01" {
-  name     = "rg-${local.connectivity_jpw_01.name}"
-  location = local.connectivity_jpw_01.location
+resource "azurerm_resource_group" "rg_vnet_sidecar_jpw_01" {
+  name     = "rg-${local.sidecar_jpw_01.name}"
+  location = local.sidecar_jpw_01.location
 }
 
 # https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest
-module "vnet_connectivity_jpw_01" {
+module "vnet_sidecar_jpw_01" {
   source  = "Azure/avm-res-network-virtualnetwork/azurerm"
   version = "0.16.0"
 
-  location             = azurerm_resource_group.rg_vnet_connect_jpw_01.location
-  parent_id            = azurerm_resource_group.rg_vnet_connect_jpw_01.id
-  address_space        = [local.connectivity_jpw_01.address_prefix]
+  location             = azurerm_resource_group.rg_vnet_sidecar_jpw_01.location
+  parent_id            = azurerm_resource_group.rg_vnet_sidecar_jpw_01.id
+  address_space        = [local.sidecar_jpw_01.address_prefix]
   enable_telemetry     = false
-  name                 = "vnet-${local.connectivity_jpw_01.name}"
+  name                 = "vnet-${local.sidecar_jpw_01.name}"
   enable_vm_protection = true
   encryption = {
     # https://learn.microsoft.com/zh-tw/azure/virtual-network/virtual-network-encryption-overview
@@ -30,7 +31,7 @@ module "vnet_connectivity_jpw_01" {
   }
   flow_timeout_in_minutes = 4
   # dns_servers = {
-  #   dns_servers = ["8.8.8.8", "1.1.1.1", "1.0.0.1"]
+  #   dns_servers = ["${local.sidecar_jpw_01.azfw_ip}"]
   # }
   #
   # diagnostic_settings = {
@@ -49,28 +50,35 @@ module "vnet_connectivity_jpw_01" {
   #
   # bgp_community = ""
   subnets = {
-    snet_dnspr_in_jpw = {
-      name                            = "snet-dnspr-in-jpw"
+    snet_dnspr_in = {
+      name                            = "snet-dnspr-in"
       address_prefixes                = ["10.227.2.0/28"]
       default_outbound_access_enabled = false
     }
 
-    snet_dnspr_out_jpw = {
-      name                            = "snet-dnspr-out-jpw"
+    snet_dnspr_out = {
+      name                            = "snet-dnspr-out"
       address_prefixes                = ["10.227.2.16/28"]
       default_outbound_access_enabled = false
     }
 
-    snet_ampls_jpw = {
-      name                            = "snet-ampls-jpw"
+    snet_ampls = {
+      name                            = "snet-ampls"
       address_prefixes                = ["10.227.2.32/28"]
       default_outbound_access_enabled = false
     }
 
-    snet_private_endpoints_jpw = {
-      name                            = "snet-private-endpoints-jpw"
-      address_prefixes                = ["10.227.2.48/28"]
+    snet_kvhsm = {
+      name                            = "snet-kvhsm"
+      address_prefixes                = ["10.227.2.48/29"]
       default_outbound_access_enabled = false
     }
+
+    snet_kv = {
+      name                            = "snet-kv"
+      address_prefixes                = ["10.227.2.56/29"]
+      default_outbound_access_enabled = false
+    }
+
   }
 }

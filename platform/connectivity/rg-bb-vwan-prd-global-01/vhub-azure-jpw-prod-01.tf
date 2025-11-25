@@ -21,9 +21,9 @@ locals {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_hub
 resource "azurerm_virtual_hub" "vhub_azure_jpw_prod_01" {
   name                                   = "vhub-${local.vhub_azure_jpw_prod_01.name}"
-  resource_group_name                    = azurerm_resource_group.rg_vwan_global_01.name
+  resource_group_name                    = azurerm_resource_group.rg_vwan_prd_global_01.name
   location                               = local.vhub_azure_jpw_prod_01.location
-  virtual_wan_id                         = azurerm_virtual_wan.vwan_global_01.id
+  virtual_wan_id                         = azurerm_virtual_wan.vwan_prd_global_01.id
   address_prefix                         = local.vhub_azure_jpw_prod_01.address_prefix
   branch_to_branch_traffic_enabled       = true
   virtual_router_auto_scale_min_capacity = local.vhub_azure_jpw_prod_01.vhub_capacity
@@ -38,7 +38,7 @@ resource "azurerm_virtual_hub" "vhub_azure_jpw_prod_01" {
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/express_route_gateway.html
 # resource "azurerm_express_route_gateway" "ergw_azure_jpw_prod_01" {
 #   name                = "ergw-${local.vhub_azure_jpw_prod_01.name}"
-#   resource_group_name = azurerm_resource_group.rg_vwan_global_01.name
+#   resource_group_name = azurerm_resource_group.rg_vwan_prd_global_01.name
 #   location            = azurerm_virtual_hub.vhub_azure_jpw_prod_01.location
 #   virtual_hub_id      = azurerm_virtual_hub.vhub_azure_jpw_prod_01.id
 #   scale_units         = local.vhub_azure_jpw_prod_01.ergw_scale_units
@@ -51,7 +51,7 @@ resource "azurerm_virtual_hub" "vhub_azure_jpw_prod_01" {
 resource "azurerm_firewall" "afw_azure_jpw_prod_01" {
   name                = "afw-${local.vhub_azure_jpw_prod_01.name}"
   location            = azurerm_virtual_hub.vhub_azure_jpw_prod_01.location
-  resource_group_name = azurerm_resource_group.rg_vwan_global_01.name
+  resource_group_name = azurerm_resource_group.rg_vwan_prd_global_01.name
   sku_name            = "AZFW_Hub"
   sku_tier            = "Premium"
 

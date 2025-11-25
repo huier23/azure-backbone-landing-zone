@@ -5,18 +5,13 @@ locals {
   }
 }
 
-resource "azurerm_resource_group" "rg_maintenance_config" {
-  name     = "rg-${local.maintenance_config.name}"
-  location = local.maintenance_config.location
-}
-
 module "mc_network_gateway" {
   source  = "Azure/avm-res-maintenance-maintenanceconfiguration/azurerm"
   version = "0.1.0"
 
   location            = local.maintenance_config.location
   name                = "mc-network-gateway"
-  resource_group_name = azurerm_resource_group.rg_maintenance_config.name
+  resource_group_name = azurerm_resource_group.rg_vwan_prd_global_01.name
   enable_telemetry    = false
   scope               = "Resource"
   extension_properties = {
@@ -39,7 +34,7 @@ module "mc_network_firewall" {
 
   location            = local.maintenance_config.location
   name                = "mc-network-firewall"
-  resource_group_name = azurerm_resource_group.rg_maintenance_config.name
+  resource_group_name = azurerm_resource_group.rg_vwan_prd_global_01.name
   enable_telemetry    = false
   scope               = "Resource"
   extension_properties = {
