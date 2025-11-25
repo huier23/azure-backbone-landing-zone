@@ -21,7 +21,7 @@ inputs = merge(
   local.merged_global_vars,
   {
     # 預設 Subscription ID (讓根目錄可執行，子模組會覆寫此值)
-    subscription_id = "00000000-0000-0000-0000-000000000000"
+    subscription_id                = "00000000-0000-0000-0000-000000000000"
   }
 )
 
