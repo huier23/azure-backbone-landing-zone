@@ -9,10 +9,6 @@ locals {
   }
 }
 
-resource "azurerm_resource_group" "rg_vnet_sidecar_jpw_01" {
-  name     = local.sidecar_jpw_01.resource_group_name
-  location = local.sidecar_jpw_01.location
-}
 
 # https://registry.terraform.io/modules/Azure/avm-res-network-virtualnetwork/azurerm/latest
 module "vnet_sidecar_jpw_01" {
