@@ -72,7 +72,7 @@ resource "azurerm_firewall" "afw_azure_jpw_prod_01" {
   sku_name            = "AZFW_Hub"
   sku_tier            = "Premium"
   private_ip_ranges   = ["IANAPrivateRanges"]
-  threat_intel_mode   = "Deny"
+  # 由防火牆原則控管威脅情報設定，明確指定會觸發 400 AzureFirewallDoesNotAcceptThreatIntelModeInSku
 
   virtual_hub {
     virtual_hub_id  = azurerm_virtual_hub.vhub_azure_jpw_prod_01.id

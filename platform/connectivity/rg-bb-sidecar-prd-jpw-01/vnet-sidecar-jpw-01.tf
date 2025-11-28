@@ -36,7 +36,7 @@ module "vnet_sidecar_jpw_01" {
     diag_logs = {
       name                           = "diag-logs"
       workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
-      log_analytics_destination_type = "AzureDiagnostics"
+      log_analytics_destination_type = "Dedicated" # Dedicated 就是 AzureDiagnostics
       log_groups                     = ["allLogs"]
       metric_categories              = ["AllMetrics"]
     }
@@ -51,39 +51,67 @@ module "vnet_sidecar_jpw_01" {
   # bgp_community = ""
   subnets = {
     snet_dnspr_in = {
-      name                            = "snet-dnspr-in"
-      address_prefixes                = ["10.227.2.0/28"]
-      default_outbound_access_enabled = false
+      name                                          = "snet-dnspr-in"
+      address_prefixes                              = ["10.227.2.0/28"]
+      default_outbound_access_enabled               = false
+      private_endpoint_network_policies             = "Enabled"
+      private_link_service_network_policies_enabled = true
+      delegations = [
+        {
+          name = "delegation-dnspr-in"
+          service_delegation = {
+            name = "Microsoft.Network/dnsResolvers"
+          }
+        }
+      ]
     }
 
     snet_dnspr_out = {
-      name                            = "snet-dnspr-out"
-      address_prefixes                = ["10.227.2.16/28"]
-      default_outbound_access_enabled = false
+      name                                          = "snet-dnspr-out"
+      address_prefixes                              = ["10.227.2.16/28"]
+      default_outbound_access_enabled               = false
+      private_endpoint_network_policies             = "Enabled"
+      private_link_service_network_policies_enabled = true
+      delegations = [
+        {
+          name = "delegation-dnspr-out"
+          service_delegation = {
+            name = "Microsoft.Network/dnsResolvers"
+          }
+        }
+      ]
     }
 
     snet_ampls = {
-      name                            = "snet-ampls"
-      address_prefixes                = ["10.227.2.32/28"]
-      default_outbound_access_enabled = false
+      name                                          = "snet-ampls"
+      address_prefixes                              = ["10.227.2.32/28"]
+      default_outbound_access_enabled               = false
+      private_endpoint_network_policies             = "Enabled"
+      private_link_service_network_policies_enabled = true
     }
 
     snet_kvhsm = {
-      name                            = "snet-kvhsm"
-      address_prefixes                = ["10.227.2.48/29"]
-      default_outbound_access_enabled = false
+      name                                          = "snet-kvhsm"
+      address_prefixes                              = ["10.227.2.48/29"]
+      default_outbound_access_enabled               = false
+      private_endpoint_network_policies             = "Enabled"
+      private_link_service_network_policies_enabled = true
     }
 
     snet_kv = {
-      name                            = "snet-kv"
-      address_prefixes                = ["10.227.2.56/29"]
-      default_outbound_access_enabled = false
+      name                                          = "snet-kv"
+      address_prefixes                              = ["10.227.2.56/29"]
+      default_outbound_access_enabled               = false
+      private_endpoint_network_policies             = "Enabled"
+      private_link_service_network_policies_enabled = true
     }
 
     snet_azurebastionsubnet = {
-      name                            = "AzureBastionSubnet"
-      address_prefixes                = ["10.227.3.0/24"]
-      default_outbound_access_enabled = false
+      name                                          = "AzureBastionSubnet"
+      address_prefixes                              = ["10.227.3.0/24"]
+      default_outbound_access_enabled               = false
+      private_endpoint_network_policies             = "Enabled"
+      private_link_service_network_policies_enabled = true
     }
   }
 }
