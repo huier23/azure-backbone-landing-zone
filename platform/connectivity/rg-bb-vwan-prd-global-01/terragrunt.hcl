@@ -40,7 +40,7 @@ dependency "vnet_sidecar_jpw_01_id" {
 }
 
 inputs = {
-  subscription_id  = include.root.locals.merged_global_vars.subscription_connectivity_id
+  subscription_id                 = include.root.locals.merged_global_vars.subscription_connectivity_id
   log_soc_prd_jpw_01_workspace_id = dependency.security_log_soc_prd_jpw_01.outputs.log_soc_prd_jpw_01_workspace_id
   afwp_azure_jpw_prod_01_id       = dependency.firewall_policies_id.outputs.afwp_azure_jpw_prod_01_id
   vnet_sidecar_jpw_01_id          = dependency.vnet_sidecar_jpw_01_id.outputs.vnet_id

@@ -81,7 +81,7 @@ resource "azurerm_firewall" "afw_azure_jpw_prd_01" {
   }
 
   zones              = local.vhub_azure_jpw_prd_01.zones
-  firewall_policy_id = var.afwp_azure_jpw_prd_01_id
+  firewall_policy_id = var.afwp_azure_jpw_prod_01_id
 
   tags = local.tags_connectivity
 }

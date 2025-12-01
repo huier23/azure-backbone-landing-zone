@@ -8,7 +8,7 @@ variable "subscription_id" {
   type        = string
 }
 
-variable "afwp_azure_jpw_prd_01_id" {
+variable "afwp_azure_jpw_prod_01_id" {
   description = "來自 connectivity/rg-bb-afwp-prd-global-01 的 Firewall Policy Resource ID"
   type        = string
 }
