@@ -34,4 +34,23 @@ resource "azurerm_firewall_policy" "afwp_global_01" {
   }
 }
 
+resource "azurerm_firewall_policy_rule_collection_group" "rcg_global" {
+  name               = "rcg-global-rules"
+  firewall_policy_id = azurerm_firewall_policy.afwp_global_01.id
+  priority           = 100
+
+  network_rule_collection {
+    name     = "allow_network_rules"
+    priority = 400
+    action   = "Allow"
+    rule {
+      name                  = "Allow ICMP"
+      protocols             = ["ICMP"]
+      source_addresses      = ["*"]
+      destination_addresses = ["*"]
+      destination_ports     = ["*"]
+    }
+  }
+
+}
 
