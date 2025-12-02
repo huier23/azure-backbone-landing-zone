@@ -18,7 +18,7 @@ dependency "vnet_sidecar_prd_jpw_01" {
 }
 
 dependency "security_log_soc_prd_jpw_01" {
-  config_path = "../../security/rg-bb-log-soc-prd-jpw-01"
+  config_path = "../../security/rg-bb-soc-prd-jpw-01"
   mock_outputs = {
     log_soc_prd_jpw_01_workspace_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mock-rg/providers/Microsoft.OperationalInsights/workspaces/mock-log-soc-prd-jpw-01"
   }

@@ -14,7 +14,7 @@ variable "afwp_azure_jpw_prod_01_id" {
 }
 
 variable "log_soc_prd_jpw_01_workspace_id" {
-  description = "來自 security/rg-bb-log-soc-prd-jpw-01 的 Log Analytics Workspace Resource ID"
+  description = "來自 security/rg-bb-soc-prd-jpw-01 的 Log Analytics Workspace Resource ID"
   type        = string
 }
 
