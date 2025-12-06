@@ -10,7 +10,7 @@ locals {
       priority                   = 100
       direction                  = "Inbound"
       access                     = "Allow"
-      source_address_prefix      = module.vnet_sidecar_jpw_01["snet-azurebastionsubnet"].address_prefixes[0]
+      source_address_prefix      = "10.227.3.0/24" # AzureBastionSubnet
       source_port_range          = "*"
       destination_address_prefix = "*"
       destination_port_ranges    = ["22", "3389"]

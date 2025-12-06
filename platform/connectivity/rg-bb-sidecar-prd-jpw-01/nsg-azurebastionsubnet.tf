@@ -73,7 +73,7 @@ locals {
       access                     = "Allow"
       source_address_prefix      = "*"
       source_port_range          = "*"
-      destination_address_prefix = module.vnet_sidecar_jpw_01["snet-jumperbox"].address_prefixes[0]
+      destination_address_prefix = "10.227.2.64/28" # snet-jumperbox
       destination_port_ranges    = ["22", "3389"]
       direction                  = "Outbound"
       priority                   = 100
