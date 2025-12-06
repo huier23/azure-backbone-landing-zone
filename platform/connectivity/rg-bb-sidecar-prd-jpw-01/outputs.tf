@@ -18,6 +18,12 @@ output "snet_kvhsm_id" {
   value       = module.vnet_sidecar_jpw_01.subnets["snet_kvhsm"].resource_id
 }
 
+output "snet_jumperbox_id" {
+  description = "Resource ID for snet-jumperbox subnet within vnet-sidecar-jpw-01"
+  value       = module.vnet_sidecar_jpw_01.subnets["snet_jumperbox"].resource_id
+
+}
+
 output "snet_kv_id" {
   description = "Resource ID for snet-kv subnet within vnet-sidecar-jpw-01"
   value       = module.vnet_sidecar_jpw_01.subnets["snet_kv"].resource_id

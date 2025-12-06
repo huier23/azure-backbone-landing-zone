@@ -106,8 +106,8 @@ module "vnet_sidecar_jpw_01" {
       private_link_service_network_policies_enabled = true
     }
 
-    snet_mgmt = {
-      name                                          = "snet-mgmt"
+    snet_jumperbox = {
+      name                                          = "snet-jumperbox"
       address_prefixes                              = ["10.227.2.64/28"]
       default_outbound_access_enabled               = false
       private_endpoint_network_policies             = "Enabled"
