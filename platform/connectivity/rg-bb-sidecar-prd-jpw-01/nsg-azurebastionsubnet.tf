@@ -108,7 +108,7 @@ locals {
   }
 }
 
-module "avm-res-network-networksecuritygroup" {
+module "nsg_azurebastionsubnet" {
   source              = "Azure/avm-res-network-networksecuritygroup/azurerm"
   version             = "0.5.0"
   enable_telemetry    = false
