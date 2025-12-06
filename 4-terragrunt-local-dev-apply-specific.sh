@@ -2,6 +2,8 @@
 
 # 使用 Local State
 export TG_LOCAL_STATE=true
+export TF_VAR_use_msi=false
+export TF_VAR_use_cli=true
 
 TARGET_DIR=""
 
