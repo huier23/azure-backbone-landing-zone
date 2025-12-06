@@ -1,28 +1,28 @@
 # https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachine/azurerm/latest?tab=resources
 
 module "avm-res-compute-virtualmachine" {
-  source  = "Azure/avm-res-compute-virtualmachine/azurerm"
-  version = "0.20.0"
-  enable_telemetry = false
+  source                     = "Azure/avm-res-compute-virtualmachine/azurerm"
+  version                    = "0.20.0"
+  enable_telemetry           = false
   encryption_at_host_enabled = false # TODO
-  location = local.jumperbox_prd_jpw_01.location
-  name = "vm-${local.jumperbox_prd_jpw_01.name}"
-  resource_group_name = local.jumperbox_prd_jpw_01.resource_group_name
-  zone = 1
-  os_type  = "Windows"
+  location                   = local.jumperbox_prd_jpw_01.location
+  name                       = "vm-${local.jumperbox_prd_jpw_01.name}"
+  resource_group_name        = local.jumperbox_prd_jpw_01.resource_group_name
+  zone                       = 1
+  os_type                    = "Windows"
   source_image_reference = {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
     # 支援熱修補 (Hot Patching)
     # https://learn.microsoft.com/zh-tw/azure/virtual-machines/automatic-vm-guest-patching#supported-windows-images-hotpatchable
-    sku       = "2025-datacenter-azure-edition"
-    version   = "latest"
+    sku     = "2025-datacenter-azure-edition"
+    version = "latest"
   }
   sku_size = local.jumperbox_prd_jpw_01.sku
   network_interfaces = {
     network_interfaces_1 = {
-      name                     = "nic-01-${local.jumperbox_prd_jpw_01.name}"
-      primary                   = true
+      name    = "nic-01-${local.jumperbox_prd_jpw_01.name}"
+      primary = true
       ip_configurations = {
         ip_configuration_1 = {
           name                          = "ipconfig-01"
@@ -30,8 +30,8 @@ module "avm-res-compute-virtualmachine" {
           private_ip_address_allocation = "Dynamic"
         }
       }
-      diagnostic_settings ={
-        name                          = "diag-metrics"
+      diagnostic_settings = {
+        name                  = "diag-metrics"
         workspace_resource_id = local.jumperbox_prd_jpw_01.log_analytics_workspace_id
         metric_categories = [
           "AllMetrics"

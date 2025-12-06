@@ -8,7 +8,7 @@ terraform {
 }
 
 dependency "vnet_sidecar_prd_jpw_01" {
-  config_path = "../rg-bb-sidecar-prd-jpw-01"
+  config_path = "../../connectivity/rg-bb-sidecar-prd-jpw-01"
 
   mock_outputs = {
     snet_jumperbox_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mock-rg/providers/Microsoft.Network/virtualNetworks/mock-vnet/subnets/mock-snet"

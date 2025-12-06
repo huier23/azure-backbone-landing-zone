@@ -70,23 +70,23 @@ locals {
       protocol                   = "*"
       description                = "拒絕對 Internet 的所有對外流量"
     }
-}
+  }
 }
 
 module "avm-res-network-networksecuritygroup" {
-  source  = "Azure/avm-res-network-networksecuritygroup/azurerm"
-  version = "0.5.0"
-  enable_telemetry = false
+  source              = "Azure/avm-res-network-networksecuritygroup/azurerm"
+  version             = "0.5.0"
+  enable_telemetry    = false
   resource_group_name = local.rg_vnet_sidecar_jpw_01.resource_group_name
-  location = local.rg_vnet_sidecar_jpw_01.location
-  name = "nsg-jumperbox"
+  location            = local.rg_vnet_sidecar_jpw_01.location
+  name                = "nsg-jumperbox"
   security_rules      = local.nsg_rules_jumperbox
 
   diagnostic_settings = {
-    name = "diag-logs"
-    log_groups = ["allLogs"]
-    metric_categories = ["AllMetrics"]
+    name                           = "diag-logs"
+    log_groups                     = ["allLogs"]
+    metric_categories              = ["AllMetrics"]
     log_analytics_destination_type = "Dedicated"
-    workspace_resource_id = local.sidecar_jpw_01.log_analytics_workspace_id
+    workspace_resource_id          = local.sidecar_jpw_01.log_analytics_workspace_id
   }
 }
