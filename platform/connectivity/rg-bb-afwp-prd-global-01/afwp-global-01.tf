@@ -10,11 +10,6 @@ locals {
   }
 }
 
-resource "azurerm_resource_group" "rg_afwp_global_01" {
-  name     = "rg-${local.afwp_global_01.name}"
-  location = "japanwest"
-}
-
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall_policy
 resource "azurerm_firewall_policy" "afwp_global_01" {
   name                     = local.afwp_global_01.name

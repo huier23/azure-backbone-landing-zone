@@ -1,21 +1,3 @@
-# 定義 Azure Firewall Policy
-# https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/firewall_policy
-
-locals {
-  log_soc_prd_jpw_01 = {
-    name                  = "log-soc-prd-jpw-01"
-    resource_group_name   = "rg-bb-log-soc-prd-jpw-01"
-    location              = "${var.primary_location}"
-    log_sku               = "PerGB2018"
-    log_retention_in_days = 30 # 30 ~ 730
-  }
-}
-
-resource "azurerm_resource_group" "rg_log_soc_prd_jpw_01" {
-  name     = local.log_soc_prd_jpw_01.resource_group_name
-  location = local.log_soc_prd_jpw_01.location
-}
-
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/log_analytics_workspace
 resource "azurerm_log_analytics_workspace" "log_soc_prd_jpw_01" {
   name                                    = local.log_soc_prd_jpw_01.name

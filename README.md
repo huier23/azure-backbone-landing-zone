@@ -35,3 +35,5 @@
     ```bash
     sh ./2-terragrunt-local-dev-destroy.sh
     ```
+
+
