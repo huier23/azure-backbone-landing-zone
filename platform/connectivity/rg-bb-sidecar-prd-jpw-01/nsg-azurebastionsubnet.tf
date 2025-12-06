@@ -63,7 +63,7 @@ locals {
       direction                  = "Outbound"
       priority                   = 200
       protocol                   = "Tcp"
-      description                = "允許 Bastion 對 Internet 的必要 80/443 流量"
+      description                = "允許 Bastion 對 GatewayManager 的必要 80/443 流量"
     }
     "out-allow-bastionhostcommunication" = {
       name                       = "out-allow-bastionhostcommunication"
