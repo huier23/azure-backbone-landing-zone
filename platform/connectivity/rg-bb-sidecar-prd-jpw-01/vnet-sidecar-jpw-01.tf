@@ -113,7 +113,7 @@ module "vnet_sidecar_jpw_01" {
       private_endpoint_network_policies             = "Enabled"
       private_link_service_network_policies_enabled = true
       network_security_group = {
-        id = module.nsg_jumperbox.id
+        id = module.nsg_jumperbox.resource_id
       }
     }
 
@@ -124,7 +124,7 @@ module "vnet_sidecar_jpw_01" {
       private_endpoint_network_policies             = "Enabled"
       private_link_service_network_policies_enabled = true
       network_security_group = {
-        id = module.nsg_azurebastionsubnet.id
+        id = module.nsg_azurebastionsubnet.resource_id
       }
     }
   }
