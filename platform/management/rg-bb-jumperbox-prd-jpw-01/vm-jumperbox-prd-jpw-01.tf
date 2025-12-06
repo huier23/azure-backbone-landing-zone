@@ -1,6 +1,6 @@
 # https://registry.terraform.io/modules/Azure/avm-res-compute-virtualmachine/azurerm/latest?tab=resources
 
-module "avm-res-compute-virtualmachine" {
+module "vm_jumperbox_prd_jpw_01" {
   source                     = "Azure/avm-res-compute-virtualmachine/azurerm"
   version                    = "0.20.0"
   enable_telemetry           = false
