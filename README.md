@@ -11,7 +11,7 @@
 1. 複製環境變數
 
     ```bash
-    cp global.local-dev.hcl.example global.local-devel.hcl
+    cp global.local-dev.hcl.example global.local-dev.hcl
     ```
 
 2. 將訂閱 ID 填寫進去
